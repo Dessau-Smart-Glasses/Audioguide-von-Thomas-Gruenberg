@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dessau Audioguide</title>
+  <title>Dessau-Roßlau Audioguide für Smart Glasses von Thomas Grünberg</title>
   <style>
     body {
       font-family: system-ui, sans-serif;
@@ -31,14 +31,14 @@
   </style>
 </head>
 <body>
-  <h1>Dessau Audioguide</h1>
+  <h1>Dessau-Roßlau Audioguide für Smart Glasses von Thomas Grünberg</h1>
   <p>Willkommen! Tippe unten auf <strong>Start</strong>, um die GPS-geführte Tour zu beginnen.</p>
   <button onclick="start()">Start</button>
   <p id="status">GPS ist noch nicht aktiv...</p>
 
   <script>
     // -----------------------------
-    // 🌍 GPS-Ziele (Beispiele)
+    //GPS-Ziele (Beispiele)
     // -----------------------------
     const spots = [
       {
@@ -66,7 +66,7 @@
 
     let visited = new Set();
 
-    // 🔊 Text-to-Speech Funktion
+    //Text-to-Speech Funktion
     function speak(text) {
       const msg = new SpeechSynthesisUtterance(text);
       msg.lang = 'de-DE';
@@ -74,7 +74,7 @@
       window.speechSynthesis.speak(msg);
     }
 
-    // 📏 Entfernung zwischen 2 GPS-Punkten (Haversine-Formel)
+    //Entfernung zwischen 2 GPS-Punkten (Haversine-Formel)
     function distance(lat1, lon1, lat2, lon2) {
       const R = 6371e3;
       const φ1 = lat1 * Math.PI / 180;
@@ -89,7 +89,7 @@
       return R * c;
     }
 
-    // 📍 Standort prüfen
+    //Standort prüfen
     function checkLocation(pos) {
       const { latitude, longitude } = pos.coords;
       document.getElementById("status").innerText =
@@ -107,7 +107,7 @@
       }
     }
 
-    // ▶️ Start-Button-Logik
+    //Start-Button-Logik
     function start() {
       speak("Audioguide gestartet. Standort wird ermittelt.");
       if (navigator.geolocation) {
