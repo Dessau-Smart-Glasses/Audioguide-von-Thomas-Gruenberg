@@ -1,12 +1,125 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dessau Audioguide</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background-color: #fafafa;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      background-color: #0078d4;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005ea1;
+    }
+    #status {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
-  <h1>Dessau Audioguide für Smart Glasses</h1>
-  <p>Willkommen! Diese Seite prüft Ihren Standort und führt Sie durch Dessau-Roßlau.</p>
+  <h1>Dessau Audioguide</h1>
+  <p>Willkommen! Tippe unten auf <strong>Start</strong>, um die GPS-geführte Tour zu beginnen.</p>
+  <button onclick="start()">Start</button>
+  <p id="status">GPS ist noch nicht aktiv...</p>
+
+  <script>
+    // -----------------------------
+    // 🌍 GPS-Ziele (Beispiele)
+    // -----------------------------
+    const spots = [
+      {
+        name: "Startpunkt Kreuzberge",
+        lat: 51.83125,
+        lon: 12.23200,
+        radius: 100, // Meter
+        message: "Schön, dass Sie Lust haben, Dessau neu zu entdecken! Begeben Sie sich jetzt in Richtung Kreuzberge. Dort beginnt Ihre Tour."
+      },
+      {
+        name: "Station Törten",
+        lat: 51.82235,
+        lon: 12.24780,
+        radius: 100,
+        message: "Sie befinden sich nun im Bauhaus-Siedlungsgebiet Törten. Diese Siedlung entstand zwischen 1926 und 1928 nach Entwürfen von Walter Gropius."
+      },
+      {
+        name: "Station Haideburg",
+        lat: 51.81125,
+        lon: 12.22150,
+        radius: 100,
+        message: "Willkommen in Haideburg. Hier endet der erste Teil Ihrer Audiotour. Vielen Dank fürs Mitradeln!"
+      }
+    ];
+
+    let visited = new Set();
+
+    // 🔊 Text-to-Speech Funktion
+    function speak(text) {
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = 'de-DE';
+      msg.rate = 1;
+      window.speechSynthesis.speak(msg);
+    }
+
+    // 📏 Entfernung zwischen 2 GPS-Punkten (Haversine-Formel)
+    function distance(lat1, lon1, lat2, lon2) {
+      const R = 6371e3;
+      const φ1 = lat1 * Math.PI / 180;
+      const φ2 = lat2 * Math.PI / 180;
+      const Δφ = (lat2 - lat1) * Math.PI / 180;
+      const Δλ = (lon2 - lon1) * Math.PI / 180;
+
+      const a = Math.sin(Δφ / 2) ** 2 +
+                Math.cos(φ1) * Math.cos(φ2) *
+                Math.sin(Δλ / 2) ** 2;
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      return R * c;
+    }
+
+    // 📍 Standort prüfen
+    function checkLocation(pos) {
+      const { latitude, longitude } = pos.coords;
+      document.getElementById("status").innerText =
+        `Aktuelle Position: ${latitude.toFixed(5)}, ${longitude.toFixed(5)}`;
+
+      for (let spot of spots) {
+        if (!visited.has(spot.name)) {
+          const dist = distance(latitude, longitude, spot.lat, spot.lon);
+          if (dist < spot.radius) {
+            visited.add(spot.name);
+            speak(spot.message);
+            alert(spot.message);
+          }
+        }
+      }
+    }
+
+    // ▶️ Start-Button-Logik
+    function start() {
+      speak("Audioguide gestartet. Standort wird ermittelt.");
+      if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(
+          checkLocation,
+          err => alert("GPS-Fehler: " + err.message),
+          { enableHighAccuracy: true }
+        );
+      } else {
+        alert("GPS wird nicht unterstützt.");
+      }
+    }
+  </script>
 </body>
 </html>
