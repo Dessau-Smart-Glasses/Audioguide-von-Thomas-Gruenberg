@@ -43,20 +43,56 @@
     const spots = [
       {
         name: "Starttext",
-        message: "Willkommen zum Audioguide-Test von Thomas Grünberg. "
-               + "Begeben Sie sich jetzt zur Testadresse in Dänemark bei den Koordinaten "
-               + "fünfundfünfzig Komma null acht sieben sieben sieben vier, acht Komma fünf vier acht eins zwei fünf. "
-               + "Wenn Sie dort ankommen, wird automatisch die nächste Nachricht abgespielt."
+  message: "Willkommen zum Audioguide-Test von Thomas Grünberg. "
+         + "Um den Audiguide-Test zu starten, begeben Sie sich bitte zum Carport vor Ihrem Haus, "
+         + "Sobald Sie dort ankommen sind, erkennt das System Ihren Standort automatisch "
+         + "und spielt die nächste Station des Guides ab. "
+         + "Dieser Test dient dazu, die Standortfunktion und Sprachausgabe zu prüfen."
       },
       {
-        name: "Zielbereich Dänemark",
-        lat: 55.096002,
-        lon: 8.544598,
-        radius: 200, // Meter
+        name: "Zielbereich Carport",
+        lat: 54.293188,
+        lon: 9.701321,
+        radius: 15, // Meter
         message: "Sie haben den Zielbereich erreicht! "
                + "Das GPS funktioniert einwandfrei. "
-               + "Hier könnte nun Ihre erste inhaltliche Station beginnen – etwa eine Ortsbeschreibung oder ein Audioabschnitt."
-      }
+               + "Fahre bitte nach links"
+      },
+      {
+        name: "Alter Bahnhof",
+        lat: 54.292717,
+        lon: 9.699287,
+        radius: 15, // Meter
+        message: "Sie haben den Zielbereich erreicht! "
+               + "Bitte biegen Sie nach links in die Straße Alter Bahnhof ab. "
+               + "Fahren Sie die Straße bis zur nächsten Mitteilung."
+      },
+      {
+        name: "Mühlenweg",
+        lat: 54.291804,
+        lon: 9.702292,
+        radius: 15, // Meter
+        message: "Sie haben den Zielbereich erreicht! "
+               + "Bitte biegen Sie nach links in den Mühlenweg ab. "
+               + "Fahren Sie die Straße bis zur nächsten Mitteilung."
+      },
+      {
+        name: "Kieler Straße",
+        lat: 54.293539,
+        lon: 9.702736,
+        radius: 15, // Meter
+        message: "Sie haben den Zielbereich erreicht! "
+               + "Bitte biegen Sie nach links in die Kieler Straße ab. "
+               + "Fahren Sie die Straße bis zu den Carports."
+      },
+      {
+        name: "Ende",
+        lat: 54.293303,
+        lon: 9.701214,
+        radius: 15, // Meter
+        message: "Sie haben das Ende des Audioguides erreicht! "
+               + "Vielen Dank für Ihre Zeit, ich hoffe Sie hatten Spaß, schöne Grüße Thomas Grünberg "
+          }
     ];
 
     let visited = new Set();
