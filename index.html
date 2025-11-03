@@ -30,36 +30,45 @@
     }
   </style>
 </head>
-<body>
-  <h1>Erlebe jetzt Dessau-Roßlau per Audioguide und smarter Brille.<br>
-    Von Thomas Grünberg</h1>
-  <p>
-  <strong>Schön, dass du da bist!</strong><br>
-  Dieser Audioguide ist kein klassischer Stadtführer, sondern eine begleitende, 
-  verkürzte Version der im Buch beschriebenen Route. 
-  Er vermittelt Eindrücke im Schnelldurchlauf und verweist auf Orte, 
-  die im Buch ausführlicher beschrieben sind. 
-  Die Inhalte werden – etwa bei Textprojektionen auf smarte Brillengläser – 
-  vom Buchtext abweichen bzw. gekürzt wiedergegeben werden.
-</p>
-<p>
-  Tippe unten auf <strong>Start</strong>, um deine GPS-Tour zu beginnen.
-</p>
-  <button onclick="start()">Start</button>
-  <p id="status">GPS ist noch nicht aktiv...</p>
-  
-  <p style="font-size: 0.8em; color: #555; margin-top: 2em; line-height: 1.5;">
-  <strong>Impressum & Datenschutz</strong><br>
-  Verantwortlich im Sinne des §5 TMG: <strong>Thomas Grünberg</strong><br>
-  Dieses Online-Angebot ist Teil eines kommerziellen Buchprojekts. 
-  Die Nutzung des Audioguides ist auch ohne Buchkauf möglich.<br><br>
-  Es werden keine personenbezogenen Daten gespeichert oder ausgewertet. 
-  Die Standortdaten dienen ausschließlich der lokalen Positionsbestimmung auf deinem Gerät 
-  und werden nicht an den Betreiber übermittelt. 
-  Eine anonyme Zugriffszählung über GitHub Pages kann technisch bedingt stattfinden, 
-  ohne dass Rückschlüsse auf einzelne Personen möglich sind.<br><br>
-  Bereitgestellt über <em>GitHub Pages</em> (Betreiber: GitHub, Inc.).
-</p>
+<body style="font-family: sans-serif; text-align: center; margin: 0; padding: 1.5em;">
+
+  <h2 style="margin-bottom: 0.5em;">Schön, dass du da bist!</h2>
+
+  <p style="margin-top: 0;">
+    Erlebe Dessau-Roßlau per Audioguide und smarter Brille – 
+    ein Projekt von <strong>Thomas Grünberg</strong>.<br><br>
+    Dieser Guide ist die kompakte, digitale Begleitung zum Buch 
+    und führt dich auf derselben Route – mit verkürzten Texten und klaren Stationen.
+  </p>
+
+  <p style="font-style: italic; margin: 1em 0;">
+    Treffpunkt für den Testlauf: die Wiese hinter den Plattenbauten<br>
+    am <strong>Hein-Steyer-Ring</strong>, schräg hinter <strong>Eisen Mänicke</strong>.<br>
+    (Ehemalige Hausnummer 12 – heute abgerissen)
+  </p>
+
+  <button onclick="start()" style="padding: 0.8em 1.2em; font-size: 1em; border-radius: 8px; border: none; background-color: #333; color: white; cursor: pointer; margin-top: 1em;">
+    Start
+  </button>
+
+  <p id="status" style="margin-top: 1.5em; font-size: 0.9em; color: #444;">
+    GPS ist noch nicht aktiv...
+  </p>
+
+  <hr style="margin: 2em 0; border: none; border-top: 1px solid #ddd;">
+
+  <p style="font-size: 0.8em; color: #555; line-height: 1.5;">
+    <strong>Impressum & Datenschutz</strong><br>
+    Verantwortlich im Sinne des §5 TMG: <strong>Thomas Grünberg</strong><br>
+    Dieses Online-Angebot ist Teil eines kommerziellen Buchprojekts. 
+    Die Nutzung des Audioguides ist auch ohne Buchkauf möglich.<br><br>
+    Es werden keine personenbezogenen Daten gespeichert oder ausgewertet. 
+    Die Standortdaten dienen ausschließlich der lokalen Positionsbestimmung auf deinem Gerät 
+    und werden nicht an den Betreiber übermittelt. 
+    Eine anonyme Zugriffszählung über GitHub Pages kann technisch bedingt stattfinden, 
+    ohne dass Rückschlüsse auf einzelne Personen möglich sind.<br><br>
+    Bereitgestellt über <em>GitHub Pages</em> (Betreiber: GitHub, Inc.).
+  </p>
 
   <script>
     // -----------------------------
